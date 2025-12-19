@@ -8,10 +8,10 @@ export default function Viewer() {
   return (
     <>
       <Canvas
-        camera={{ fov: 50, near: 0.05, far: 100, position: [0, 1.2, 3.2] }}
+        camera={{ fov: 50, near: 0.05, far: 100, position: [1.8, 1.4, 2.2] }}
       >
         <Suspense fallback={null}>
-          <OrbitControls />
+          <OrbitControls target={[0, 0.5, 0]} />
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={2.0} />
 
