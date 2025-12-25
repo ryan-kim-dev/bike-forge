@@ -31,7 +31,6 @@ supporting multiple manufacturers, models, and variants.
 
 - `/` – Landing & featured models/builds
 - `/models` – Model browser & selector
-- `/models/[maker]/[series]/[model]/[variant]` – Model detail
 - `/editor/...` – 3D editor (model-based / remix-based)
 - `/community` – Public build gallery
 - `/builds/[buildId]` – Public build detail
