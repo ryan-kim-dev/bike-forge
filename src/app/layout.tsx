@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Cub Configurator',
-  description: 'Create and share your own cub!',
+  title: 'Bike Forge',
+  description: 'Customize and share your own motorcycle!',
 };
 
 export default function RootLayout({
