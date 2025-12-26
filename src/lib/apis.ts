@@ -33,7 +33,10 @@ export type VariantDetail = {
 };
 
 type GetMakers = () => Promise<Maker[]>;
-type GetModelCards = (maker: string, series: string) => Promise<ModelCard[]>;
+type GetModelCards = (
+  maker: string,
+  series: string | null
+) => Promise<ModelCard[]>;
 type GetSeriesByMaker = (maker: string) => Promise<Series[]>;
 type GetModelVariants = (slug: string) => Promise<VariantDetail>;
 
@@ -52,13 +55,16 @@ export const getMakers: GetMakers = async () => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
 /** 선택한 메이커의 시리즈 목록을 불러오는 함수 */
 export const getSeriesByMaker: GetSeriesByMaker = async (maker) => {
   try {
-    const response = await fetch(`${API_BASE}/api/series?maker=${maker}`);
+    const response = await fetch(`${API_BASE}/api/series?maker=${maker}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -66,19 +72,23 @@ export const getSeriesByMaker: GetSeriesByMaker = async (maker) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
 /** 현재 선택된 메이커와 시리즈에 해당하는 모델 정보를 불러오는 함수 */
 export const getModelCards: GetModelCards = async (maker, series) => {
-  const params = {
-    maker,
-    series,
-  };
-  const queryString = new URLSearchParams(params).toString();
+  const params = new URLSearchParams({ maker });
+  // 메이커만 선택해도 여러 시리즈들의 모델카드를 바로 띄우는 UX 흐름을 위해 seriess는 optional로
+  if (series !== null) params.set('series', series);
 
   try {
-    const response = await fetch(`${API_BASE}/api/models?${queryString}`);
+    const response = await fetch(
+      `${API_BASE}/api/models?${params.toString()}`,
+      {
+        cache: 'no-store',
+      }
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -86,13 +96,16 @@ export const getModelCards: GetModelCards = async (maker, series) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
 /** 에디터에서 3d 모델링을 불러오기 위한 함수 */
 export const getModelVariants: GetModelVariants = async (slug) => {
   try {
-    const response = await fetch(`${API_BASE}/api/variants/${slug}`);
+    const response = await fetch(`${API_BASE}/api/variants/${slug}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -100,5 +113,6 @@ export const getModelVariants: GetModelVariants = async (slug) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
