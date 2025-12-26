@@ -13,7 +13,13 @@ export default async function EditorPage({
   const { slug } = await params;
 
   // TODO: topbar 구현시 breadcrumb을 그리기 위한 path 구성하기
-  const modelVariantData = await getModelVariants(slug);
+  let modelVariantData;
+  try {
+    modelVariantData = await getModelVariants(slug);
+  } catch (err) {
+    console.error('Failed to fetch model variant', err);
+    return <div>Failed to load model. Please check the URL and try again.</div>;
+  }
 
   return (
     <div

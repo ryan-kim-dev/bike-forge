@@ -2,9 +2,15 @@ import { getMakers } from '@/lib/apis';
 import FiltersPanel from './filters-panel';
 
 export default async function ModelsPage() {
-  const makers = await getMakers();
+  let makers;
+  try {
+    makers = await getMakers();
+  } catch (err) {
+    console.error('Failed to fetch makers:', err);
+    return <div>Failed to load makers. Please try again later.</div>;
+  }
   if (!makers) {
-    return <div>문제가 발생했습니다</div>;
+    return <div>No makers available.</div>;
   }
 
   return (
