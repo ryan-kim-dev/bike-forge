@@ -33,7 +33,10 @@ export type VariantDetail = {
 };
 
 type GetMakers = () => Promise<Maker[]>;
-type GetModelCards = (maker: string, series: string) => Promise<ModelCard[]>;
+type GetModelCards = (
+  maker: string,
+  series: string | null
+) => Promise<ModelCard[]>;
 type GetSeriesByMaker = (maker: string) => Promise<Series[]>;
 type GetModelVariants = (slug: string) => Promise<VariantDetail>;
 
@@ -75,16 +78,17 @@ export const getSeriesByMaker: GetSeriesByMaker = async (maker) => {
 
 /** 현재 선택된 메이커와 시리즈에 해당하는 모델 정보를 불러오는 함수 */
 export const getModelCards: GetModelCards = async (maker, series) => {
-  const params = {
-    maker,
-    series,
-  };
-  const queryString = new URLSearchParams(params).toString();
+  const params = new URLSearchParams({ maker });
+  // 메이커만 선택해도 여러 시리즈들의 모델카드를 바로 띄우는 UX 흐름을 위해 seriess는 optional로
+  if (series !== null) params.set('series', series);
 
   try {
-    const response = await fetch(`${API_BASE}/api/models?${queryString}`, {
-      cache: 'no-store',
-    });
+    const response = await fetch(
+      `${API_BASE}/api/models?${params.toString()}`,
+      {
+        cache: 'no-store',
+      }
+    );
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

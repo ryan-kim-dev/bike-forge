@@ -1,33 +1,33 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { getSeriesByMaker, getModelCards, ModelCard } from '@/lib/apis';
+import { useModelCards, useSeriesByMaker } from '@/lib/useQueries';
+import { Maker } from '@/lib/apis';
 
 type Props = {
-  makers: string[];
+  makers: Maker[];
 };
 
-export default function FiltersPanel(props: Props) {
+export default function FiltersPanel({ makers }: Props) {
   const router = useRouter();
 
-  // 서버로부터 받는 상태 - 향후 필요시 분리
-  const [series, setSeries] = useState<string[]>([]);
-  const [modelCards, setModelCards] = useState<ModelCard[]>([]);
   // UI 상태
-  const [selectedMaker, setSelectedMaker] = useState('');
+  const [selectedMaker, setSelectedMaker] = useState<string | null>(null);
+  const [selectedSeries, setSelectedSeries] = useState<string | null>(null);
 
-  const onSelectMaker = async (maker: string) => {
+  // 서버 상태
+  const seriesQuery = useSeriesByMaker(selectedMaker); // maker 선택 시 series 목록 로드
+  const cardsQuery = useModelCards(
+    selectedMaker ? { maker: selectedMaker, series: selectedSeries } : null
+  ); // maker만 선택돼도 전체 series의 cards 로드, series 선택 시 필터 적용
+
+  const onSelectMaker = (maker: string) => {
     setSelectedMaker(maker);
-    // 선택한 제조사가 변경되면 하위데이터 state값을 초기화
-    setSeries([]);
-
-    const seriesData = await getSeriesByMaker(maker);
-    setSeries(seriesData);
+    setSelectedSeries(null); // maker 바뀌면 필터 리셋 -> 즉시 전체 노출
   };
 
-  const onSelectSeries = async (seriesName: string) => {
-    const modelCardData = await getModelCards(selectedMaker, seriesName);
-    setModelCards(modelCardData);
+  const onSelectSeries = (seriesName: string) => {
+    setSelectedSeries(seriesName); // 필터 적용
   };
 
   const onSelectModel = (slug: string) => {
@@ -36,43 +36,49 @@ export default function FiltersPanel(props: Props) {
 
   return (
     <div>
+      {/* Makers */}
       <ul>
-        {props.makers.map((maker) => {
-          return (
-            <li key={maker}>
-              <div>
-                <button onClick={() => onSelectMaker(maker)}>{maker}</button>
-              </div>
-            </li>
-          );
-        })}
+        {makers.map((maker) => (
+          <li key={maker}>
+            <button onClick={() => onSelectMaker(maker)}>{maker}</button>
+          </li>
+        ))}
       </ul>
-      {series.length !== 0 && (
-        <ul>
-          {series.map((seriesName) => {
-            return (
-              <li key={seriesName}>
-                <button onClick={() => onSelectSeries(seriesName)}>
-                  {seriesName}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      )}
-      <section>
-        {modelCards.length !== 0 && (
-          <ul>
-            {modelCards.map((modelCard) => {
-              return (
-                <li key={modelCard.slug}>
-                  {/* CardItem이 될 것임. 차후 별도 컴포넌트로 분리? */}
-                  <button onClick={() => onSelectModel(modelCard.slug)}>
-                    {modelCard.slug}
+
+      {/* Series */}
+      {selectedMaker && (
+        <section>
+          {seriesQuery.isLoading && <p>Loading series…</p>}
+          {seriesQuery.isError && <p>Failed to load series.</p>}
+
+          {seriesQuery.data && seriesQuery.data.length > 0 && (
+            <ul>
+              {seriesQuery.data.map((seriesName) => (
+                <li key={seriesName}>
+                  <button onClick={() => onSelectSeries(seriesName)}>
+                    {seriesName}
                   </button>
                 </li>
-              );
-            })}
+              ))}
+            </ul>
+          )}
+        </section>
+      )}
+
+      {/* Model cards */}
+      <section>
+        {cardsQuery.isLoading && <p>Loading models…</p>}
+        {cardsQuery.isError && <p>Failed to load models.</p>}
+
+        {cardsQuery.data && cardsQuery.data.length > 0 && (
+          <ul>
+            {cardsQuery.data.map((card) => (
+              <li key={card.slug}>
+                <button onClick={() => onSelectModel(card.slug)}>
+                  {card.slug}
+                </button>
+              </li>
+            ))}
           </ul>
         )}
       </section>
