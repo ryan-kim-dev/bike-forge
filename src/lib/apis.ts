@@ -52,13 +52,16 @@ export const getMakers: GetMakers = async () => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
 /** 선택한 메이커의 시리즈 목록을 불러오는 함수 */
 export const getSeriesByMaker: GetSeriesByMaker = async (maker) => {
   try {
-    const response = await fetch(`${API_BASE}/api/series?maker=${maker}`);
+    const response = await fetch(`${API_BASE}/api/series?maker=${maker}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -66,6 +69,7 @@ export const getSeriesByMaker: GetSeriesByMaker = async (maker) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
@@ -78,7 +82,9 @@ export const getModelCards: GetModelCards = async (maker, series) => {
   const queryString = new URLSearchParams(params).toString();
 
   try {
-    const response = await fetch(`${API_BASE}/api/models?${queryString}`);
+    const response = await fetch(`${API_BASE}/api/models?${queryString}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -86,13 +92,16 @@ export const getModelCards: GetModelCards = async (maker, series) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
 /** 에디터에서 3d 모델링을 불러오기 위한 함수 */
 export const getModelVariants: GetModelVariants = async (slug) => {
   try {
-    const response = await fetch(`${API_BASE}/api/variants/${slug}`);
+    const response = await fetch(`${API_BASE}/api/variants/${slug}`, {
+      cache: 'no-store',
+    });
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -100,5 +109,6 @@ export const getModelVariants: GetModelVariants = async (slug) => {
     return response.json();
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };

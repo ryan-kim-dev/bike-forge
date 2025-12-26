@@ -1,10 +1,14 @@
 'use client';
 import { Canvas } from '@react-three/fiber';
 import { Loader, Environment, OrbitControls } from '@react-three/drei';
-import Cub from './cub';
+import Motorcycle from './motorcycle';
 import { Suspense } from 'react';
 
-export default function Viewer() {
+type Props = {
+  sourceUrl: string;
+};
+
+export default function Viewer(props: Props) {
   return (
     <>
       <Canvas
@@ -17,7 +21,7 @@ export default function Viewer() {
           <directionalLight position={[5, 5, 5]} intensity={2.0} />
 
           <Environment preset="city" />
-          <Cub />
+          <Motorcycle sourceUrl={props.sourceUrl} />
         </Suspense>
       </Canvas>
       <Loader />
