@@ -28,7 +28,7 @@ export default async function EditorPage({
         height: '100dvh',
       }}
     >
-      <Viewer sourceUrl={modelVariantData.source_url} />
+      <Viewer sourceUrl={modelVariantData.sourceUrl} />
       <footer>
         <p>
           This work is based on &quot;Honda Super cub&quot;

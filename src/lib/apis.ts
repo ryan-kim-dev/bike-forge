@@ -4,31 +4,31 @@ export type Series = string;
 
 export type ModelCard = {
   slug: string;
-  thumbnail_url: string | null;
-  model_year: number;
+  thumbnailUrl: string | null;
+  modelYear: number;
   market: string;
   trim: string;
-  model_identities: {
-    canonical_name: string;
+  modelIdentities: {
+    canonicalName: string;
     maker: string;
-    series_slug: string;
-    model_slug: string;
+    seriesSlug: string;
+    modelSlug: string;
   };
 };
 
 export type VariantDetail = {
   slug: string;
-  source_url: string;
-  meta_url: string | null;
-  thumbnail_url: string | null;
-  model_year: number;
+  sourceUrl: string;
+  metaUrl: string | null;
+  thumbnailUrl: string | null;
+  modelYear: number;
   market: string;
   trim: string;
-  model_identities: {
-    canonical_name: string;
+  modelIdentities: {
+    canonicalName: string;
     maker: string;
-    series_slug: string;
-    model_slug: string;
+    seriesSlug: string;
+    modelSlug: string;
   };
 };
 
@@ -93,7 +93,8 @@ export const getModelCards: GetModelCards = async (maker, series) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return response.json();
+    const res = await response.json();
+    return res.data;
   } catch (err) {
     console.error(err);
     throw err;
@@ -110,7 +111,8 @@ export const getModelVariants: GetModelVariants = async (slug) => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return response.json();
+    const res = await response.json();
+    return res.data;
   } catch (err) {
     console.error(err);
     throw err;
