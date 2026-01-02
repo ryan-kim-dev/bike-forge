@@ -1,5 +1,5 @@
 import { getMakers } from '@/lib/apis';
-import FiltersPanel from './filters-panel';
+import ModelsClient from '../features/models/models-client';
 
 export default async function ModelsPage() {
   let makers;
@@ -15,7 +15,7 @@ export default async function ModelsPage() {
 
   return (
     <div>
-      <FiltersPanel makers={makers} />
+      <ModelsClient makers={makers} />
     </div>
   );
 }

@@ -1,5 +1,5 @@
-import Viewer from '@/app/components/viewer';
 import { getModelVariants } from '@/lib/apis';
+import EditorClient from '@/app/features/editor/editor-client';
 
 type EditorParams = {
   slug: string;
@@ -22,13 +22,9 @@ export default async function EditorPage({
   }
 
   return (
-    <div
-      style={{
-        width: '100dvw',
-        height: '100dvh',
-      }}
-    >
-      <Viewer sourceUrl={modelVariantData.sourceUrl} />
+    <div>
+      <EditorClient sourceUrl={modelVariantData.sourceUrl} />
+
       <footer>
         <p>
           This work is based on &quot;Honda Super cub&quot;
