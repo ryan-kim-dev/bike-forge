@@ -1,5 +1,5 @@
 import { getModelVariants } from '@/lib/apis';
-import EditorClient from '@/app/features/editor/editor-client';
+import EditorClient from '@/features/editor/editor-client';
 
 type EditorParams = {
   slug: string;

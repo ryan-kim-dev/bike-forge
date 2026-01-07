@@ -1,5 +1,5 @@
 import { getMakers } from '@/lib/apis';
-import ModelsClient from '../features/models/models-client';
+import ModelsClient from '../../features/models/models-client';
 import Container from '@/components/layout/container';
 import Section from '@/components/layout/section';
 import { stack } from '@/styles/layout/stack.css';
