@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Container from '@/components/layout/container';
 import Section from '@/components/layout/section';
-import { Button } from '@/components/ui/button';
 import { text } from '@/styles/ui/typography.css';
 import { button } from '@/styles/ui/button.css';
 import { stack } from '@/styles/layout/stack.css';
@@ -40,9 +39,12 @@ function HeroSection() {
 
             {/* CTA Buttons */}
             <div className={stack({ direction: 'row', gap: '3' })}>
-              <Button variant="primary" size="lg">
+              <Link
+                href="/models"
+                className={button({ variant: 'primary', size: 'lg' })}
+              >
                 Start Customizing
-              </Button>
+              </Link>
 
               <Link
                 href="/community"
