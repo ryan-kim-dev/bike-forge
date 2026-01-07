@@ -1,4 +1,15 @@
 import type { Maker } from '@/lib/apis';
+import { Button } from '@/components/ui/button';
+import { text } from '@/styles/ui/typography.css';
+import { filterButton } from '@/styles/ui/filter-button.css';
+import {
+  filtersPanelContainer,
+  filterSection,
+  filterSectionHeader,
+  filterSectionHeaderRow,
+  filterList,
+  filterStateMessage,
+} from '@/styles/pages/models/filters-panel.css';
 
 type Props = {
   makers: Maker[];
@@ -21,18 +32,23 @@ export default function FiltersPanel({
   onSelectSeries,
 }: Props) {
   return (
-    <div>
-      <h2>Filters</h2>
+    <div className={filtersPanelContainer}>
+      {/* 모델 검색 필터 패널영역 타이틀 */}
+      <h2 className={text({ variant: 'h3' })}>Filters</h2>
 
-      <section>
-        <div>Manufacturer</div>
-        <ul>
+      {/* 제조사 섹션 */}
+      <section className={filterSection}>
+        <div className={filterSectionHeader}>Manufacturer</div>
+        <ul className={filterList}>
           {makers.map((maker) => {
-            // TODO: 조건부 스타일링
-            // const active = maker === selectedMaker;
+            const isActive = maker === selectedMaker;
             return (
               <li key={maker}>
-                <button type="button" onClick={() => onSelectMaker(maker)}>
+                <button
+                  type="button"
+                  className={filterButton({ active: isActive })}
+                  onClick={() => onSelectMaker(maker)}
+                >
                   {maker}
                 </button>
               </li>
@@ -41,30 +57,39 @@ export default function FiltersPanel({
         </ul>
       </section>
 
+      {/* 시리즈 섹션 - 선택된 제조사가 존재할 경우만 visible */}
       {selectedMaker && (
-        <section>
-          <div>
-            <div>Series</div>
-            <button
-              type="button"
+        <section className={filterSection}>
+          <div className={filterSectionHeaderRow}>
+            <div className={filterSectionHeader}>Series</div>
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => onSelectSeries(null)}
               disabled={!selectedSeries}
             >
               Clear
-            </button>
+            </Button>
           </div>
 
-          {seriesState.isLoading && <p>Loading series…</p>}
-          {seriesState.isError && <p>Failed to load series.</p>}
+          {seriesState.isLoading && (
+            <p className={filterStateMessage}>Loading series…</p>
+          )}
+          {seriesState.isError && (
+            <p className={filterStateMessage}>Failed to load series.</p>
+          )}
 
           {!seriesState.isLoading && !seriesState.isError && (
-            <ul>
+            <ul className={filterList}>
               {series.map((name) => {
-                // TODO: 조건부 스타일링
-                // const active = name === selectedSeries;
+                const isActive = name === selectedSeries;
                 return (
                   <li key={name}>
-                    <button type="button" onClick={() => onSelectSeries(name)}>
+                    <button
+                      type="button"
+                      className={filterButton({ active: isActive })}
+                      onClick={() => onSelectSeries(name)}
+                    >
                       {name}
                     </button>
                   </li>

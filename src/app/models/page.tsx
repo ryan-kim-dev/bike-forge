@@ -4,7 +4,7 @@ import Container from '@/components/layout/container';
 import Section from '@/components/layout/section';
 import { stack } from '@/styles/layout/stack.css';
 import { text } from '@/styles/ui/typography.css';
-import { modelsContentLayout } from '@/styles/pages/models.css';
+import { modelsContentLayout } from '@/styles/pages/models/models.css';
 
 export default async function ModelsPage() {
   let makers;

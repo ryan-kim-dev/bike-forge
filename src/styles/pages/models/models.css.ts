@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
-import { vars } from '../theme.css';
-import { media } from '../media';
+import { vars } from '../../theme.css';
+import { media } from '../../media';
 
 /**
  * 모바일 - 세로 배치 (필터가 위, 그리드가 아래)
