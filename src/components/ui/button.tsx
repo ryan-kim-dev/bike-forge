@@ -44,14 +44,14 @@ export interface ButtonProps
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   function Button(
-    { variant, size, loading, disabled, className, children, ...props },
+    { variant, size, fullWidth, loading, disabled, className, children, ...props },
     ref
   ) {
     return (
       <BaseButton
         ref={ref}
         disabled={disabled || loading}
-        className={clsx(buttonRecipe({ variant, size }), className)}
+        className={clsx(buttonRecipe({ variant, size, fullWidth }), className)}
         {...props}
       >
         {loading ? 'Loading...' : children}

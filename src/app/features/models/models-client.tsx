@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import type { Maker } from '@/lib/apis';
 import { useModelCards, useSeriesByMaker } from '@/lib/useQueries';
 import FiltersPanel from './filters-panel';
-import ModelGrid from './model-grid';
+import ModelsGrid from './models-grid';
 
 type Props = { makers: Maker[] };
 
@@ -56,7 +56,7 @@ export default function ModelsClient({ makers }: Props) {
       </aside>
 
       <main>
-        <ModelGrid
+        <ModelsGrid
           cards={cards}
           isLoading={cardsQuery.isLoading}
           isError={cardsQuery.isError}

@@ -12,7 +12,7 @@ const focusRing = `0 0 0 3px ${vars.color.ring}`;
  */
 export const button = recipe({
   base: {
-    display: 'inline-flex',
+    display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     gap: vars.space['2'],
@@ -103,6 +103,17 @@ export const button = recipe({
         paddingRight: vars.space['6'],
         fontSize: vars.font.size.lg,
         borderRadius: vars.radius.lg,
+      },
+    },
+
+    fullWidth: {
+      true: {
+        width: '100%',
+        // 이유: full-width로 만들기 위해 width: 100% 적용
+        // inline-flex는 유지되지만 width가 100%이므로 전체 너비 차지
+      },
+      false: {
+        // 이유: 기본값은 inline-flex의 auto width
       },
     },
   },
