@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import QueryProvider from '../components/query-provider';
 import { Inter, Racing_Sans_One } from 'next/font/google';
 import localFont from 'next/font/local';
-import { lightThemeClass } from '@/styles/theme.css';
 import './reset.css';
+import { ThemeProvider } from '@/components/theme-provider';
 
 // 1) Body font: SUIT (local)
 const suit = localFont({
@@ -46,10 +46,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lightThemeClass} ${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
+      className={`${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
     >
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
