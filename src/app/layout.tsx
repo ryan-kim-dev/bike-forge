@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import QueryProvider from './components/query-provider';
+import QueryProvider from '../components/query-provider';
 import { Inter, Racing_Sans_One } from 'next/font/google';
 import localFont from 'next/font/local';
 import { lightThemeClass } from '@/styles/theme.css';
