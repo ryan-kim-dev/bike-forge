@@ -47,6 +47,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <QueryProvider>
