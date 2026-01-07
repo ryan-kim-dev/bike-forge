@@ -39,37 +39,30 @@ export default function ModelsClient({ makers }: Props) {
   const cards = useMemo(() => cardsQuery.data ?? [], [cardsQuery.data]);
 
   return (
-    <div>
-      <header>
-        <h1>Choose Your Motorcycle</h1>
-        <p>Select a model to start customizing in 3D.</p>
-      </header>
+    <>
+      <aside>
+        <FiltersPanel
+          makers={makers}
+          selectedMaker={selectedMaker}
+          onSelectMaker={onSelectMaker}
+          series={series}
+          seriesState={{
+            isLoading: seriesQuery.isLoading,
+            isError: seriesQuery.isError,
+          }}
+          selectedSeries={selectedSeries}
+          onSelectSeries={onSelectSeries}
+        />
+      </aside>
 
-      <div>
-        <aside>
-          <FiltersPanel
-            makers={makers}
-            selectedMaker={selectedMaker}
-            onSelectMaker={onSelectMaker}
-            series={series}
-            seriesState={{
-              isLoading: seriesQuery.isLoading,
-              isError: seriesQuery.isError,
-            }}
-            selectedSeries={selectedSeries}
-            onSelectSeries={onSelectSeries}
-          />
-        </aside>
-
-        <main>
-          <ModelGrid
-            cards={cards}
-            isLoading={cardsQuery.isLoading}
-            isError={cardsQuery.isError}
-            onSelectModel={onSelectModel}
-          />
-        </main>
-      </div>
-    </div>
+      <main>
+        <ModelGrid
+          cards={cards}
+          isLoading={cardsQuery.isLoading}
+          isError={cardsQuery.isError}
+          onSelectModel={onSelectModel}
+        />
+      </main>
+    </>
   );
 }
