@@ -3,8 +3,6 @@ import QueryProvider from '../components/query-provider';
 import { Inter, Racing_Sans_One } from 'next/font/google';
 import localFont from 'next/font/local';
 import { lightThemeClass } from '@/styles/theme.css';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import './reset.css';
 
 // 1) Body font: SUIT (local)
@@ -51,11 +49,7 @@ export default function RootLayout({
       className={`${lightThemeClass} ${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
     >
       <body>
-        <QueryProvider>
-          <Header />
-          {children}
-          <Footer />
-        </QueryProvider>
+        <QueryProvider>{children}</QueryProvider>
       </body>
     </html>
   );
