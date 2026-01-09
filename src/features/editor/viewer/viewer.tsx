@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { Loader, Environment, OrbitControls } from '@react-three/drei';
 import Motorcycle from './motorcycle';
 import { Suspense } from 'react';
+import { viewerCanvas } from '@/styles/pages/editor/viewer.css';
 
 type Props = {
   sourceUrl: string;
@@ -10,7 +11,7 @@ type Props = {
 
 export default function Viewer(props: Props) {
   return (
-    <>
+    <div className={viewerCanvas}>
       <Canvas
         camera={{ fov: 50, near: 0.05, far: 100, position: [1.8, 1.4, 2.2] }}
       >
@@ -25,6 +26,6 @@ export default function Viewer(props: Props) {
         </Suspense>
       </Canvas>
       <Loader />
-    </>
+    </div>
   );
 }

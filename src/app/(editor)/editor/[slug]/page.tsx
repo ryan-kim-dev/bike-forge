@@ -21,9 +21,5 @@ export default async function EditorPage({
     return <div>Failed to load model. Please check the URL and try again.</div>;
   }
 
-  return (
-    <div>
-      <EditorClient sourceUrl={modelVariantData.sourceUrl} />
-    </div>
-  );
+  return <EditorClient sourceUrl={modelVariantData.sourceUrl} />;
 }
