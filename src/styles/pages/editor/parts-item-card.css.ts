@@ -1,8 +1,9 @@
 import { style } from '@vanilla-extract/css';
+import { vars } from '@/styles/theme.css';
 
 export const partsCardContainer = style({
-  padding: 12,
-  borderRadius: 12,
-  border: '1px solid rgba(0,0,0,0.08)',
-  background: 'rgba(255,255,255,0.6)',
+  padding: vars.space['3'],
+  borderRadius: vars.radius.md,
+  border: `1px solid ${vars.color.border}`,
+  background: vars.color.card,
 });
