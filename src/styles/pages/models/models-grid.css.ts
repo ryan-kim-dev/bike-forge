@@ -9,10 +9,10 @@ export const modelsGridContainer = style({
   gap: vars.space['6'], // 24px 간격
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       gridTemplateColumns: 'repeat(2, 1fr)', // 태블릿: 2열
     },
-    [media.lg]: {
+    [media.up.lg]: {
       gridTemplateColumns: 'repeat(3, 1fr)', // 데스크톱: 3열
     },
   },

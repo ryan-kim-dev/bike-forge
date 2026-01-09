@@ -26,11 +26,11 @@ export const footerContainer = style({
   paddingBottom: vars.space['8'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       paddingLeft: vars.space['6'],
       paddingRight: vars.space['6'],
     },
-    [media.lg]: {
+    [media.up.lg]: {
       paddingLeft: vars.space['8'],
       paddingRight: vars.space['8'],
     },
@@ -47,7 +47,7 @@ export const footerTop = style({
   marginBottom: vars.space['12'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       gridTemplateColumns: '2fr 3fr',
       gap: vars.space['12'],
     },
@@ -83,7 +83,7 @@ export const footerLinks = style({
   gap: vars.space['8'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       gridTemplateColumns: 'repeat(3, 1fr)',
     },
   },
@@ -146,7 +146,7 @@ export const footerCopyright = style({
   textAlign: 'center',
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       textAlign: 'left',
     },
   },

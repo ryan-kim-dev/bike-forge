@@ -31,11 +31,11 @@ export const headerContainer = style({
   height: '64px',
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       paddingLeft: vars.space['6'],
       paddingRight: vars.space['6'],
     },
-    [media.lg]: {
+    [media.up.lg]: {
       paddingLeft: vars.space['8'],
       paddingRight: vars.space['8'],
     },
@@ -82,7 +82,7 @@ export const headerNav = style({
   gap: vars.space['6'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       display: 'flex',
     },
   },

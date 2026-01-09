@@ -12,7 +12,7 @@ export const modelsContentLayout = style({
   gap: vars.space['8'],
 
   '@media': {
-    [media.lg]: {
+    [media.up.lg]: {
       // 1024px 이상: 사이드바 + 메인 컨텐츠
       gridTemplateColumns: '280px 1fr',
       gap: vars.space['12'],

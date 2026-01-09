@@ -13,7 +13,7 @@ export const filtersPanelContainer = style({
 
   // 데스크톱에서 sticky 위치 (스크롤해도 필터 고정)
   '@media': {
-    [media.lg]: {
+    [media.up.lg]: {
       position: 'sticky',
       top: vars.space['4'],
     },

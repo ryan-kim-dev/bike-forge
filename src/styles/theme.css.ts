@@ -106,6 +106,8 @@ export const vars = createThemeContract({
     overlay: null,
     modal: null,
     popover: null,
+    base: null,
+    panel: null,
   },
 });
 
@@ -221,6 +223,8 @@ export const lightThemeClass = createTheme(vars, {
     overlay: '40',
     modal: '50',
     popover: '60',
+    base: '0',
+    panel: '10',
   },
 });
 
@@ -320,5 +324,7 @@ export const darkThemeClass = createTheme(vars, {
     overlay: '40',
     modal: '50',
     popover: '60',
+    base: '0',
+    panel: '10',
   },
 });

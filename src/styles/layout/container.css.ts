@@ -18,11 +18,11 @@ export const container = recipe({
     paddingLeft: vars.space['4'],
     paddingRight: vars.space['4'],
     '@media': {
-      [media.md]: {
+      [media.up.md]: {
         paddingLeft: vars.space['6'],
         paddingRight: vars.space['6'],
       },
-      [media.lg]: {
+      [media.up.lg]: {
         paddingLeft: vars.space['8'],
         paddingRight: vars.space['8'],
       },

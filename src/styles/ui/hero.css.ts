@@ -14,7 +14,7 @@ export const heroLayout = style({
   gap: vars.space['8'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       flexDirection: 'row',
       alignItems: 'center',
       gap: vars.space['12'],
@@ -36,7 +36,7 @@ export const heroContentResponsive = style({
   gap: vars.space['6'],
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       alignItems: 'flex-start',
     },
   },
@@ -53,7 +53,7 @@ export const heroVisualResponsive = style({
   width: '100%',
 
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       width: 'auto',
     },
   },

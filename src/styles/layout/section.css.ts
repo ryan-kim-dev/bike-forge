@@ -6,11 +6,11 @@ export const section = style({
   paddingTop: vars.space['12'],
   paddingBottom: vars.space['12'],
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       paddingTop: vars.space['16'],
       paddingBottom: vars.space['16'],
     },
-    [media.lg]: {
+    [media.up.lg]: {
       paddingTop: '80px',
       paddingBottom: '80px',
     },
@@ -21,11 +21,11 @@ export const sectionTight = style({
   paddingTop: vars.space['8'],
   paddingBottom: vars.space['8'],
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       paddingTop: vars.space['12'],
       paddingBottom: vars.space['12'],
     },
-    [media.lg]: {
+    [media.up.lg]: {
       paddingTop: vars.space['16'],
       paddingBottom: vars.space['16'],
     },
@@ -36,11 +36,11 @@ export const sectionLoose = style({
   paddingTop: vars.space['16'],
   paddingBottom: vars.space['16'],
   '@media': {
-    [media.md]: {
+    [media.up.md]: {
       paddingTop: '80px',
       paddingBottom: '80px',
     },
-    [media.lg]: {
+    [media.up.lg]: {
       paddingTop: '112px',
       paddingBottom: '112px',
     },
