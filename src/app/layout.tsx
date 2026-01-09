@@ -1,6 +1,37 @@
 import type { Metadata } from 'next';
-import QueryProvider from './components/query-provider';
-import './globals.css';
+import QueryProvider from '../components/query-provider';
+import { Inter, Racing_Sans_One } from 'next/font/google';
+import localFont from 'next/font/local';
+import './reset.css';
+import { ThemeProvider } from '@/components/theme-provider';
+
+// 1) Body font: SUIT (local)
+const suit = localFont({
+  src: [
+    {
+      path: '../assets/fonts/SUIT-Variable.woff2',
+      weight: '100 900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-body',
+  display: 'swap',
+});
+
+// 2) UI brand font: Inter (google)
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-ui-brand',
+  display: 'swap',
+});
+
+// 3) Logo display font: Racing Sans One (google)
+const racingSansOne = Racing_Sans_One({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-logo',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
   title: 'Bike Forge',
@@ -13,9 +44,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </QueryProvider>
       </body>
     </html>
   );
