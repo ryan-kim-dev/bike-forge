@@ -28,6 +28,12 @@ export const modelCard = style({
     boxShadow: '0 12px 24px rgba(0, 0, 0, 0.1)',
     borderColor: vars.color.primary,
   },
+
+  ':focus-within': {
+    borderColor: vars.color.primary,
+    outline: `2px solid ${vars.color.ring}`,
+    outlineOffset: 2,
+  },
 });
 
 /**
