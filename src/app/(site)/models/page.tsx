@@ -14,7 +14,7 @@ export default async function ModelsPage() {
     console.error('Failed to fetch makers:', err);
     return <div>Failed to load makers. Please try again later.</div>;
   }
-  if (!makers) {
+  if (makers.length === 0) {
     return <div>No makers available.</div>;
   }
 
