@@ -1,11 +1,4 @@
-import {
-  editorRoot,
-  editorHeader,
-  editorBody,
-  leftPanel,
-  viewerPanel,
-  rightPanel,
-} from '@/styles/pages/editor/layout.css';
+import { editorRoot, editorHeader } from '@/styles/pages/editor/layout.css';
 
 export default function EditorLayout({
   children,
@@ -16,11 +9,7 @@ export default function EditorLayout({
     <div className={editorRoot}>
       <header className={editorHeader}>{/* TODO: EditorTopBar */}</header>
 
-      <div className={editorBody}>
-        <aside className={leftPanel}></aside>
-        <main className={viewerPanel}>{children}</main>
-        <aside className={rightPanel}></aside>
-      </div>
+      {children}
     </div>
   );
 }
