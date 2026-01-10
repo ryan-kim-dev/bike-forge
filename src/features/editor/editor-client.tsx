@@ -11,7 +11,6 @@ import {
   rightPanel,
   leftClosed,
   rightClosed,
-  panelHeader,
   panelBody,
   leftHandle,
   rightHandle,
