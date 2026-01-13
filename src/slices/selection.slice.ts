@@ -29,7 +29,7 @@ export const createSelectionSlice: StateCreator<
     if (get().hoveredPartId === id) return;
 
     set({
-      selectedPartId: id,
+      hoveredPartId: id,
     });
   },
 
