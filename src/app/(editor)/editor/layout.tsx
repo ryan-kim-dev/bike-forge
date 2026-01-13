@@ -1,4 +1,5 @@
 import { editorRoot, editorHeader } from '@/styles/pages/editor/layout.css';
+import { EditorStoreProvider } from '@/providers/editor-store-provider';
 
 export default function EditorLayout({
   children,
@@ -8,8 +9,7 @@ export default function EditorLayout({
   return (
     <div className={editorRoot}>
       <header className={editorHeader}>{/* TODO: EditorTopBar */}</header>
-
-      {children}
+      <EditorStoreProvider>{children}</EditorStoreProvider>
     </div>
   );
 }
