@@ -1,20 +1,19 @@
 import { EditorStoreState } from '@/stores/editor-store';
 import { StateCreator } from 'zustand';
+import { type Object3D } from 'three';
 
 export type PartId = string;
 
-export type SelectionState = {
-  hoveredPartId: PartId | null;
+export type SelectionSlice = {
+  hovered: Object3D | null;
+  selected: Object3D | null;
   selectedPartId: PartId | null;
-};
 
-export type SelectionAction = {
-  setHoveredPartId: (id: PartId | null) => void;
-  setSelectedPartId: (id: PartId | null) => void;
   clearSelection: () => void;
+  setHovered: (o: Object3D | null) => void;
+  setSelected: (o: Object3D | null) => void;
+  setSelectedPartId: (id: PartId) => void;
 };
-
-export type SelectionSlice = SelectionState & SelectionAction;
 
 export const createSelectionSlice: StateCreator<
   EditorStoreState,
@@ -23,26 +22,25 @@ export const createSelectionSlice: StateCreator<
   SelectionSlice
 > = (set, get) => ({
   selectedPartId: null,
-  hoveredPartId: null,
-
-  setHoveredPartId: (id) => {
-    if (get().hoveredPartId === id) return;
-
-    set({
-      hoveredPartId: id,
-    });
-  },
-
-  setSelectedPartId: (id) => {
-    if (get().selectedPartId === id) return;
-
-    set({
-      selectedPartId: id,
-    });
-  },
+  hovered: null,
+  selected: null,
 
   clearSelection: () =>
     set({
       selectedPartId: null,
+      hovered: null,
+      selected: null,
     }),
+
+  setHovered: (o) => {
+    if (get().hovered === o) return;
+    set({ hovered: o });
+  },
+
+  setSelected: (o) => {
+    if (get().selected === o) return;
+    set({ selected: o });
+  },
+
+  setSelectedPartId: (id) => set({ selectedPartId: id }),
 });
