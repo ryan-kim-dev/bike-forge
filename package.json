@@ -12,6 +12,7 @@
     "@base-ui/react": "^1.0.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
+    "@react-three/postprocessing": "^3.0.4",
     "@tanstack/react-query": "^5.90.12",
     "@types/three": "^0.182.0",
     "@vanilla-extract/css": "^1.18.0",
