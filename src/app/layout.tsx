@@ -49,6 +49,9 @@ export default function RootLayout({
       className={`${suit.variable} ${inter.variable} ${racingSansOne.variable}`}
       suppressHydrationWarning
     >
+      {/* <head>
+        <script async src="https://unpkg.com/react-scan/dist/auto.global.js" />
+      </head> */}
       <body>
         <QueryProvider>
           <ThemeProvider>{children}</ThemeProvider>

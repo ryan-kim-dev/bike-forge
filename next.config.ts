@@ -6,6 +6,7 @@ import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin';
  * 차후 완전히 turbopack으로 전환할 것
  *  */
 const nextConfig: NextConfig = {
+  reactStrictMode: false,
   turbopack: {
     rules: {
       '*.svg': {
