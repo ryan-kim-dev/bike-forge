@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import clsx from 'clsx';
-import Viewer from './viewer/viewer';
+import Viewer from './ui/viewer/viewer';
+import { SceneIndexProvider } from './scene/scene-index-context';
 
 import {
   editorPage,
@@ -26,8 +27,8 @@ import {
   panelSurface,
 } from '@/styles/pages/editor/overlay.css';
 import { LuChevronRight, LuChevronLeft } from 'react-icons/lu';
-import PartsPanel from './parts-panel';
-import InspectorPanel from './inspector-panel';
+import PartsPanel from './ui/panels/parts-panel';
+import InspectorPanel from './ui/panels/inspector-panel';
 
 type Props = { sourceUrl: string };
 
@@ -43,11 +44,12 @@ export default function EditorClient({ sourceUrl }: Props) {
   const [mobileTab, setMobileTab] = useState<MobileTab>('parts');
 
   return (
-    <div className={editorPage}>
-      {/* Canvas fullscreen: 패널 토글과 무관하게 항상 화면 꽉 */}
-      <div className={canvasLayer}>
-        <Viewer sourceUrl={sourceUrl} />
-      </div>
+    <SceneIndexProvider>
+      <div className={editorPage}>
+        {/* Canvas fullscreen: 패널 토글과 무관하게 항상 화면 꽉 */}
+        <div className={canvasLayer}>
+          <Viewer sourceUrl={sourceUrl} />
+        </div>
 
       {/* ---------------- Desktop: Left overlay panel ---------------- */}
       <aside
@@ -123,7 +125,7 @@ export default function EditorClient({ sourceUrl }: Props) {
           <button
             className={clsx(
               bottomTab,
-              mobileTab === 'parts' && bottomTabActive
+              mobileTab === 'parts' && bottomTabActive,
             )}
             onClick={() => {
               setBottomOpen(true);
@@ -135,7 +137,7 @@ export default function EditorClient({ sourceUrl }: Props) {
           <button
             className={clsx(
               bottomTab,
-              mobileTab === 'inspector' && bottomTabActive
+              mobileTab === 'inspector' && bottomTabActive,
             )}
             onClick={() => {
               setBottomOpen(true);
@@ -151,5 +153,6 @@ export default function EditorClient({ sourceUrl }: Props) {
         </div>
       </section>
     </div>
+    </SceneIndexProvider>
   );
 }

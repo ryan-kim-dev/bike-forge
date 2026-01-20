@@ -1,5 +1,5 @@
 import { editorRoot, editorHeader } from '@/styles/pages/editor/layout.css';
-import { EditorStoreProvider } from '@/providers/editor-store-provider';
+import { EditorStoreProvider } from '@/features/editor/store/editor-store-provider';
 
 export default function EditorLayout({
   children,
