@@ -1,9 +1,6 @@
 import { create } from 'zustand';
-import {
-  createSelectionSlice,
-  SelectionSlice,
-} from '../slices/selection.slice';
-import { UiSlice, createUiSlice } from '@/slices/ui.slice';
+import { createSelectionSlice, SelectionSlice } from './slices/selection.slice';
+import { UiSlice, createUiSlice } from './slices/ui.slice';
 
 export type EditorStoreState = SelectionSlice & UiSlice;
 

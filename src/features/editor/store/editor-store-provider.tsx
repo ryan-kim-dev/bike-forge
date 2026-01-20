@@ -4,7 +4,7 @@ import {
   createEditorStore,
   type EditorStore,
   type EditorStoreState,
-} from '@/stores/editor-store';
+} from '@/features/editor/store/editor-store';
 import { createContext, useContext, useMemo, type ReactNode } from 'react';
 import { useStore } from 'zustand';
 
@@ -14,9 +14,7 @@ export type EditorStoreProviderProps = {
   children: ReactNode;
 };
 
-export const EditorStoreProvider = ({
-  children,
-}: EditorStoreProviderProps) => {
+export const EditorStoreProvider = ({ children }: EditorStoreProviderProps) => {
   const store = useMemo(() => createEditorStore(), []);
 
   return (
@@ -26,9 +24,7 @@ export const EditorStoreProvider = ({
   );
 };
 
-export function useEditorStore<T>(
-  selector: (state: EditorStoreState) => T
-): T {
+export function useEditorStore<T>(selector: (state: EditorStoreState) => T): T {
   const store = useContext(EditorStoreContext);
 
   if (!store) {

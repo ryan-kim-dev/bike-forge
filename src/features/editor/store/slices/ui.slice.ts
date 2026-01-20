@@ -1,5 +1,5 @@
 import type { StateCreator } from 'zustand';
-import type { EditorStoreState } from '../stores/editor-store';
+import type { EditorStoreState } from '../editor-store';
 
 export type UiSlice = {
   inspectorTab: 'part' | 'decal' | 'scene';
@@ -7,7 +7,7 @@ export type UiSlice = {
 };
 
 export const createUiSlice: StateCreator<EditorStoreState, [], [], UiSlice> = (
-  set
+  set,
 ) => ({
   inspectorTab: 'part',
   setInspectorTab: (tab) => set({ inspectorTab: tab }),
